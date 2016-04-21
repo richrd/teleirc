@@ -61,8 +61,8 @@ var init = function(msgCallback) {
     });
 
     nodeIrc.on('join', function(chanName, user, text) {
-        if(config.sendNonMsg) {
-            var channel = ircUtil.lookupChannel(chanName, config.channels)
+        if (config.sendNonMsg) {
+            var channel = ircUtil.lookupChannel(chanName, config.channels);
             msgCallback({
                 protocol: 'irc',
                 type: 'join',
@@ -74,8 +74,8 @@ var init = function(msgCallback) {
     });
 
     nodeIrc.on('part', function(chanName, user, text) {
-        if(config.sendNonMsg) {
-            var channel = ircUtil.lookupChannel(chanName, config.channels)
+        if (config.sendNonMsg) {
+            var channel = ircUtil.lookupChannel(chanName, config.channels);
             msgCallback({
                 protocol: 'irc',
                 type: 'part',
@@ -87,14 +87,14 @@ var init = function(msgCallback) {
     });
 
     nodeIrc.on('quit', function(user, text, channels, message) {
-        if(config.sendNonMsg) {
+        if (config.sendNonMsg) {
             for (var i = 0; i < channels.length; i++) {
-                var reason = "";
-                if(text) {
-                    reason = " (" + text + ")";
+                var reason = '';
+                if (text) {
+                    reason = ' (' + text + ')';
                 }
 
-                var channel = ircUtil.lookupChannel(channels[i], config.channels)
+                var channel = ircUtil.lookupChannel(channels[i], config.channels);
                 msgCallback({
                     protocol: 'irc',
                     type: 'quit',
@@ -104,8 +104,8 @@ var init = function(msgCallback) {
                 });
             }
         }
-    });
 
+    });
 
     return {
         send: function(message) {
